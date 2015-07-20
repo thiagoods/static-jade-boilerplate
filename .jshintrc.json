@@ -1,0 +1,15 @@
+{
+  "maxerr"        : 50,
+  "bitwise"       : false,
+  "forin"         : false,
+  "immed"         : true,
+  "indent"        : 2,
+  "latedef"       : true,
+  "quotmark"      : "single",
+  "strict"        : false,
+  "maxdepth"      : 4,
+  "eqnull"        : true,
+  "browser"       : true,
+  "jquery"        : true,
+  "mocha"         : false
+}
