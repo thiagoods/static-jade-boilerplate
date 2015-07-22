@@ -29,34 +29,38 @@ gulp.task('clean', function(cb) {
 gulp.task('copy', function(){
   gulp.src('src/_assets/**/*')
     .pipe(gulp.dest('dist/assets'));
-  gulp.src('src/*.*')
+  gulp.src(['src/*.*', '!src/*.html'])
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('html', function() {
-  return gulp.src('src/_pages/**/*.html')
+gulp.task('jekyll', function (gulpCallBack){
+    var spawn = require('child_process').spawn;
+    var jekyll = spawn('jekyll', ['build'], {stdio: 'inherit'});
+    jekyll.on('exit', function(code) {
+      gulpCallBack(code === 0 ? null : 'ERROR: Jekyll process exited with code: '+code);
+    });
+ });
+
+gulp.task('html',['jekyll'], function() {
+  return gulp.src('dist/**/*.html')
     .pipe(minifyHtml())
     .pipe(gulp.dest('dist'))
-    .pipe(browserSync.reload({stream:true}))
+    .pipe(browserSync.reload({stream:true, once: true}))
 });
 
 gulp.task('css', function(){
-  gulp.src(['src/_css/*.scss', '!src/_css/style.scss'])
-    .pipe(csscomb())
-    .pipe(gulp.dest('src/_css'));
-  return gulp.src('src/_css/style.scss')
+  return gulp.src('src/_css/main.scss')
     .pipe(sass({errLogToConsole: true}))
-    .pipe(csscomb())
     .pipe(autoprefixer(autoprefixerConfig))
     .pipe(gulp.dest('dist/css'))
     .pipe(rename({suffix: '.min'}))
     .pipe(minifycss())
     .pipe(gulp.dest('dist/css'))
-    .pipe(browserSync.reload({stream:true}))
+    .pipe(browserSync.reload({stream:true, once: true}))
 });
 
 gulp.task('css-analyze', function(){
-  return gulp.src('src/_css/style.scss')
+  return gulp.src('src/_css/main.scss')
     .pipe(sass({errLogToConsole: true}))
     .pipe(autoprefixer(autoprefixerConfig))
     .pipe(csslint(csslintConfig))
@@ -71,7 +75,7 @@ gulp.task('js', function() {
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
     .pipe(gulp.dest('dist/js'))
-    .pipe(browserSync.reload({stream:true}))
+    .pipe(browserSync.reload({stream:true, once: true}))
 });
 
 gulp.task('js-analyze', function() {
@@ -93,11 +97,10 @@ gulp.task('analyze', function() {
   gulp.start('css-analyze', 'js-analyze');
 });
 
-gulp.task('build', ['html', 'css', 'js', 'copy']);
-
-gulp.task('serve', ['build'], function() {
+gulp.task('default', ['html', 'css', 'js', 'copy'], function() {
+  gulp.watch('src/_posts/*.markdown', ['html']);
+  gulp.watch('src/**/*.html', ['html']);
   gulp.watch('src/_css/*.scss', ['css']);
   gulp.watch('src/_js/*.js', ['js']);
-  gulp.watch('src/_pages/**/*.html', ['html']);
   gulp.start('browser-sync');
 });
