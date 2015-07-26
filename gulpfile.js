@@ -3,7 +3,6 @@ var gulp = require('gulp'),
     autoprefixer = require('gulp-autoprefixer'),
     browserSync = require('browser-sync'),
     concat = require('gulp-concat'),
-    csscomb = require('gulp-csscomb'),
     csslint = require('gulp-csslint'),
     del = require('del'),
     jshint = require('gulp-jshint'),
@@ -33,11 +32,11 @@ gulp.task('copy', function(){
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('jekyll', function (gulpCallBack){
+gulp.task('jekyll', function (cb){
     var spawn = require('child_process').spawn;
     var jekyll = spawn('jekyll', ['build'], {stdio: 'inherit'});
     jekyll.on('exit', function(code) {
-      gulpCallBack(code === 0 ? null : 'ERROR: Jekyll process exited with code: '+code);
+      cb(code === 0 ? null : 'ERROR: Jekyll process exited with code: '+ code);
     });
  });
 
@@ -59,7 +58,7 @@ gulp.task('css', function(){
     .pipe(browserSync.reload({stream:true, once: true}))
 });
 
-gulp.task('css-analyze', function(){
+gulp.task('cssanalyze', function(){
   return gulp.src('src/_css/main.scss')
     .pipe(sass({errLogToConsole: true}))
     .pipe(autoprefixer(autoprefixerConfig))
@@ -78,7 +77,7 @@ gulp.task('js', function() {
     .pipe(browserSync.reload({stream:true, once: true}))
 });
 
-gulp.task('js-analyze', function() {
+gulp.task('jsanalyze', function() {
   return gulp.src('src/_js/*.js')
     .pipe(jshint(jshintConfig))
     .pipe(jshint.reporter('default'))
@@ -94,7 +93,7 @@ gulp.task('browser-sync', function() {
 });
 
 gulp.task('analyze', function() {
-  gulp.start('css-analyze', 'js-analyze');
+  gulp.start('cssanalyze', 'jsanalyze');
 });
 
 gulp.task('default', ['html', 'css', 'js', 'copy'], function() {

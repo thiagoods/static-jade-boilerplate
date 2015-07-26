@@ -13,7 +13,7 @@
 	"space-after-colon"               : 1,
 	"space-after-combinator"          : 1,
 	"space-after-opening-brace"       : "\n",
-	"space-after-selector-delimiter"  : "\n",
+	"space-after-selector-delimiter"  : " ",
 	"space-before-closing-brace"      : "\n",
 	"space-before-colon"              : 0,
 	"space-before-combinator"         : 1,
