@@ -33,10 +33,9 @@ gulp.task('copy', function(){
 });
 
 gulp.task('jekyll', function (cb){
-    var spawn = require('child_process').spawn;
-    var jekyll = spawn('jekyll', ['build'], {stdio: 'inherit'});
-    jekyll.on('exit', function(code) {
-      cb(code === 0 ? null : 'ERROR: Jekyll process exited with code: '+ code);
+    var exec = require('child_process').exec;
+    exec('jekyll build', function(err, stdout, stderr) {
+      console.log(stdout);
     });
  });
 
