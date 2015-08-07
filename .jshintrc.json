@@ -1,15 +1,20 @@
 {
   "maxerr"        : 50,
-  "bitwise"       : false,
+  "camelcase"     : true,
+  "eqeqeq"        : false,
   "forin"         : false,
   "immed"         : true,
   "indent"        : 2,
-  "latedef"       : true,
   "quotmark"      : "single",
   "strict"        : false,
+  "maxparams"     : false,
   "maxdepth"      : 4,
-  "eqnull"        : true,
+  "maxstatements" : false,
+  "evil"          : false,
+  "expr"          : false,
+  "loopfunc"      : false,
+  "laxcomma"      : false,
   "browser"       : true,
   "jquery"        : true,
-  "mocha"         : false
+  "node"          : true
 }

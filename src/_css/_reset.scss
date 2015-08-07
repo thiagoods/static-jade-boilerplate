@@ -1,8 +1,9 @@
 /*
-** Thiago Oliveira Reset
+** My Boilerplate Reset
 */
 html {
   box-sizing: border-box;
+  font-size: 16px;
 }
 *, *:before, *:after {
   box-sizing: inherit;
@@ -45,7 +46,7 @@ blockquote, q {
   quotes: '''';
 }
 sub, sup {
-  font-size: 75%;
+  font-size: .7em;
   line-height: 0;
   position: relative;
   vertical-align: baseline;
