@@ -1,0 +1,46 @@
+/* Semantic Grid */
+
+@mixin row($columns: $columns) {
+  display: block;
+  @extend %clearfix;
+  margin: 0 $total-width*((($gutter-width*.5)/$gridsystem-width)*-1);
+  width: $total-width*(($gutter-width + $gridsystem-width)/$gridsystem-width);
+}
+%column {
+  float: left;
+  margin: 0 $total-width*(($gutter-width*.5)/$gridsystem-width);
+  position: relative;
+}
+@mixin column($x,$columns: $columns) {
+  @extend %column;
+  width: $total-width*(((($gutter-width+$column-width)*$x)-$gutter-width) / $gridsystem-width);
+}
+
+@mixin push($offset: 1) {
+  margin-left: $total-width*((($gutter-width+$column-width)*$offset) / $gridsystem-width) + $total-width*(($gutter-width*.5)/$gridsystem-width);
+}
+@mixin pull($offset: 1) {
+  margin-right: $total-width*((($gutter-width+$column-width)*$offset) / $gridsystem-width) + $total-width*(($gutter-width*.5)/$gridsystem-width);
+}
+.container {
+  @extend %clearfix;
+  margin: 0 auto;
+  max-width: 1040px;
+}
+.cabecalho, .footer {
+  border: 1px solid red;
+  @include column(12);
+}
+.conteudo {
+  border: 1px solid green;
+  @include column(8);
+}
+.sidebar {
+  border: 1px solid green;
+  @include column(4);
+}
+.banner {
+  border: 1px solid blue;
+  @include column(10);
+  @include push();
+}

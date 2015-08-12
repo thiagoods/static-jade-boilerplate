@@ -43,11 +43,12 @@ gulp.task('image', function(){
 });
 
 gulp.task('jekyll', function (cb){
-    var exec = require('child_process').exec;
-    exec('jekyll build', function(err, stdout, stderr) {
-      console.log(stdout);
+    var spawn = require('child_process').spawn;
+    var jekyll = spawn('jekyll', ['build'], {stdio: 'inherit'});
+    jekyll.on('exit', function(code) {
+      cb(code === 0 ? null : 'ERROR: Jekyll process exited with code: '+ code);
     });
- });
+});
 
 gulp.task('html',['jekyll'], function(){
   return gulp.src('dist/**/*.html')
