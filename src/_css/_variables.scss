@@ -1,19 +1,16 @@
 /* Variables
 ========================================
 **************/
+/* Grid */
 $column-width: 70;
 $gutter-width: 20;
 $columns: 12;
 $gridsystem-width: ($column-width*$columns) + ($gutter-width*$columns);
 $total-width: 100%;
-
-%clearfix {
-  *zoom: 1;
-  &:before, &:after {
-    content: '';
-    display: table;
-  }
-  &:after {
-    clear: both;
-  }
-}
+//Converting gridsystem-width to pixels
+$grid-width: $gridsystem-width*1px;
+//Media queries breakpoints
+$small-screen: 30em;
+$medium-screen: 40em;
+$large-screen: 50em;
+$xlarge-screen: 65em;

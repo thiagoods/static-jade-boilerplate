@@ -1,0 +1,110 @@
+/* Grid */
+.row {
+  @include clearfix();
+}
+
+@mixin columns($col-num) {
+  width: $total-width * (((($gutter-width+$column-width)*$col-num)-$gutter-width) / $gridsystem-width);
+}
+@mixin push($offset) {
+  margin-left: $total-width*((($gutter-width+$column-width)*$offset) / $gridsystem-width) + $total-width*(($gutter-width*.5)/$gridsystem-width);
+}
+@mixin pull($offset) {
+  margin-right: $total-width*((($gutter-width+$column-width)*$offset) / $gridsystem-width) + $total-width*(($gutter-width*.5)/$gridsystem-width);
+}
+
+[class^=col] {
+  border: 1px solid blue;
+  float: left;
+  margin: 0 ($total-width*($gutter-width*.5))/$gridsystem-width;
+  position: relative;
+}
+
+@for $i from 1 through $columns {
+  .col-#{$i} {
+    @include columns($i);
+  }
+}
+@for $i from 1 through ($columns - 1) {
+  .col-push-#{$i} {
+    @include push($i);
+  }
+}
+@for $i from 1 through ($columns - 1) {
+  .col-pull-#{$i} {
+    @include pull($i);
+  }
+}
+@media (min-width: $small-screen) {
+  @for $i from 1 through $columns {
+    .col-s-#{$i} {
+      @include columns($i);
+    }
+  }
+  @for $i from 1 through ($columns - 1) {
+    .col-s-push-#{$i} {
+      @include push($i);
+    }
+  }
+  @for $i from 1 through ($columns - 1) {
+    .col-s-pull-#{$i} {
+      @include pull($i);
+    }
+  }
+}
+@media (min-width: $medium-screen) {
+  @for $i from 1 through $columns {
+    .col-m-#{$i} {
+      @include columns($i);
+    }
+  }
+  @for $i from 1 through ($columns - 1) {
+    .col-m-push-#{$i} {
+      @include push($i);
+    }
+  }
+  @for $i from 1 through ($columns - 1) {
+    .col-m-pull-#{$i} {
+      @include pull($i);
+    }
+  }
+}
+@media (min-width: $large-screen) {
+  @for $i from 1 through $columns {
+    .col-l-#{$i} {
+      @include columns($i);
+    }
+  }
+  @for $i from 1 through ($columns - 1) {
+    .col-l-push-#{$i} {
+      @include push($i);
+    }
+  }
+  @for $i from 1 through ($columns - 1) {
+    .col-l-pull-#{$i} {
+      @include pull($i);
+    }
+  }
+}
+@media (min-width: $xlarge-screen) {
+  @for $i from 1 through $columns {
+    .col-xl-#{$i} {
+      @include columns($i);
+    }
+  }
+  @for $i from 1 through ($columns - 1) {
+    .col-xl-push-#{$i} {
+      @include push($i);
+    }
+  }
+  @for $i from 1 through ($columns - 1) {
+    .col-xl-pull-#{$i} {
+      @include pull($i);
+    }
+  }
+  .container {
+    @include clearfix();
+    margin: 0 auto;
+    max-width: $xlarge-screen;
+  }
+}
