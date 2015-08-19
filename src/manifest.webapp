@@ -2,12 +2,12 @@
   "version": "1.0.0",
   "name": "Your Main Page",
   "launch_path": "/index.html",
-  "description": "A front-end template that helps you build fast, modern mobile web apps.",
+  "description": "A front-end template that helps you build web apps.",
   "icons": {
     "128": "assets/icons/icon-128x128.png"
   },
   "developer": {
-    "name": "",
+    "name": "Thiago Oliveira",
     "url": ""
   },
   "installs_allowed_from": [
@@ -19,7 +19,7 @@
   "locales": {
     "en": {
       "name": "Your Main Page",
-      "description": "A front-end template that helps you build fast, modern mobile web apps."
+      "description": "A front-end template that helps you build web apps."
     }
   }
 }

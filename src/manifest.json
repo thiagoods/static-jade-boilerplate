@@ -11,6 +11,6 @@
         "src": "assets/icons/chrome-touch-icon-192x192.png",
         "sizes": "192x192"
       }],
-  "start_url": "/index.html?homescreen=1",
+  "start_url": "/index.html",
   "display": "standalone"
 }
