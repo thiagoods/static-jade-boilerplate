@@ -1,110 +1,110 @@
 /* Semantic Grid */
 
 %row {
-  @include clearfix();
-  width: $total-width;
+	@include clearfix();
+	width: $total-width;
 }
 %column {
-  float: left;
-  margin: 0 $total-width*(($gutter-width*.5)/$gridsystem-width);
-  position: relative;
+	float: left;
+	margin: 0 $total-width*(($gutter-width*.5)/$gridsystem-width);
+	position: relative;
 }
 @for $i from 1 through $columns {
-  %col-#{$i} {
-    width: $total-width*(((($gutter-width+$column-width)*$i)-$gutter-width) / $gridsystem-width);
-  }
+	%col-#{$i} {
+		width: $total-width*(((($gutter-width+$column-width)*$i)-$gutter-width) / $gridsystem-width);
+	}
 }
 @media (min-width: $small-screen) {
-  @for $i from 1 through $columns {
-    %col-s-#{$i} {
-      width: $total-width*(((($gutter-width+$column-width)*$i)-$gutter-width) / $gridsystem-width);
-    }
-  }
+	@for $i from 1 through $columns {
+		%col-s-#{$i} {
+			width: $total-width*(((($gutter-width+$column-width)*$i)-$gutter-width) / $gridsystem-width);
+		}
+	}
 }
 @media (min-width: $medium-screen) {
-  @for $i from 1 through $columns {
-    %col-m-#{$i} {
-      width: $total-width*(((($gutter-width+$column-width)*$i)-$gutter-width) / $gridsystem-width);
-    }
-  }
+	@for $i from 1 through $columns {
+		%col-m-#{$i} {
+			width: $total-width*(((($gutter-width+$column-width)*$i)-$gutter-width) / $gridsystem-width);
+		}
+	}
 }
 @media (min-width: $large-screen) {
-  @for $i from 1 through $columns {
-    %col-l-#{$i} {
-      width: $total-width*(((($gutter-width+$column-width)*$i)-$gutter-width) / $gridsystem-width);
-    }
-  }
+	@for $i from 1 through $columns {
+		%col-l-#{$i} {
+			width: $total-width*(((($gutter-width+$column-width)*$i)-$gutter-width) / $gridsystem-width);
+		}
+	}
 }
 @media (min-width: $xlarge-screen) {
-  @for $i from 1 through $columns {
-    %col-xl-#{$i} {
-      width: $total-width*(((($gutter-width+$column-width)*$i)-$gutter-width) / $gridsystem-width);
-    }
-  }
+	@for $i from 1 through $columns {
+		%col-xl-#{$i} {
+			width: $total-width*(((($gutter-width+$column-width)*$i)-$gutter-width) / $gridsystem-width);
+		}
+	}
 }
 @for $offset from 1 through $columns {
-  %push-#{$offset} {
-    margin-left: $total-width*((($gutter-width+$column-width)*$offset) / $gridsystem-width) + $total-width*(($gutter-width*.5)/$gridsystem-width);
-  }
+	%push-#{$offset} {
+		margin-left: $total-width*((($gutter-width+$column-width)*$offset) / $gridsystem-width) + $total-width*(($gutter-width*.5)/$gridsystem-width);
+	}
 }
 @media (min-width: $small-screen) {
-  @for $offset from 1 through $columns {
-    %push-s-#{$offset} {
-      margin-left: $total-width*((($gutter-width+$column-width)*$offset) / $gridsystem-width) + $total-width*(($gutter-width*.5)/$gridsystem-width);
-    }
-  }
+	@for $offset from 1 through $columns {
+		%push-s-#{$offset} {
+			margin-left: $total-width*((($gutter-width+$column-width)*$offset) / $gridsystem-width) + $total-width*(($gutter-width*.5)/$gridsystem-width);
+		}
+	}
 }
 @media (min-width: $medium-screen) {
-  @for $offset from 1 through $columns {
-    %push-m-#{$offset} {
-      margin-left: $total-width*((($gutter-width+$column-width)*$offset) / $gridsystem-width) + $total-width*(($gutter-width*.5)/$gridsystem-width);
-    }
-  }
+	@for $offset from 1 through $columns {
+		%push-m-#{$offset} {
+			margin-left: $total-width*((($gutter-width+$column-width)*$offset) / $gridsystem-width) + $total-width*(($gutter-width*.5)/$gridsystem-width);
+		}
+	}
 }
 @media (min-width: $large-screen) {
-  @for $offset from 1 through $columns {
-    %push-l-#{$offset} {
-      margin-left: $total-width*((($gutter-width+$column-width)*$offset) / $gridsystem-width) + $total-width*(($gutter-width*.5)/$gridsystem-width);
-    }
-  }
+	@for $offset from 1 through $columns {
+		%push-l-#{$offset} {
+			margin-left: $total-width*((($gutter-width+$column-width)*$offset) / $gridsystem-width) + $total-width*(($gutter-width*.5)/$gridsystem-width);
+		}
+	}
 }
 @media (min-width: $xlarge-screen) {
-  @for $offset from 1 through $columns {
-    %push-xl-#{$offset} {
-      margin-left: $total-width*((($gutter-width+$column-width)*$offset) / $gridsystem-width) + $total-width*(($gutter-width*.5)/$gridsystem-width);
-    }
-  }
+	@for $offset from 1 through $columns {
+		%push-xl-#{$offset} {
+			margin-left: $total-width*((($gutter-width+$column-width)*$offset) / $gridsystem-width) + $total-width*(($gutter-width*.5)/$gridsystem-width);
+		}
+	}
 }
 @for $offset from 1 through $columns {
-  %pull-#{$offset} {
-    margin-right: $total-width*((($gutter-width+$column-width)*$offset) / $gridsystem-width) + $total-width*(($gutter-width*.5)/$gridsystem-width);
-  }
+	%pull-#{$offset} {
+		margin-right: $total-width*((($gutter-width+$column-width)*$offset) / $gridsystem-width) + $total-width*(($gutter-width*.5)/$gridsystem-width);
+	}
 }
 @media (min-width: $small-screen) {
-  @for $offset from 1 through $columns {
-    %pull-s-#{$offset} {
-      margin-right: $total-width*((($gutter-width+$column-width)*$offset) / $gridsystem-width) + $total-width*(($gutter-width*.5)/$gridsystem-width);
-    }
-  }
+	@for $offset from 1 through $columns {
+		%pull-s-#{$offset} {
+			margin-right: $total-width*((($gutter-width+$column-width)*$offset) / $gridsystem-width) + $total-width*(($gutter-width*.5)/$gridsystem-width);
+		}
+	}
 }
 @media (min-width: $medium-screen) {
-  @for $offset from 1 through $columns {
-    %pull-m-#{$offset} {
-      margin-right: $total-width*((($gutter-width+$column-width)*$offset) / $gridsystem-width) + $total-width*(($gutter-width*.5)/$gridsystem-width);
-    }
-  }
+	@for $offset from 1 through $columns {
+		%pull-m-#{$offset} {
+			margin-right: $total-width*((($gutter-width+$column-width)*$offset) / $gridsystem-width) + $total-width*(($gutter-width*.5)/$gridsystem-width);
+		}
+	}
 }
 @media (min-width: $large-screen) {
-  @for $offset from 1 through $columns {
-    %pull-l-#{$offset} {
-      margin-right: $total-width*((($gutter-width+$column-width)*$offset) / $gridsystem-width) + $total-width*(($gutter-width*.5)/$gridsystem-width);
-    }
-  }
+	@for $offset from 1 through $columns {
+		%pull-l-#{$offset} {
+			margin-right: $total-width*((($gutter-width+$column-width)*$offset) / $gridsystem-width) + $total-width*(($gutter-width*.5)/$gridsystem-width);
+		}
+	}
 }
 @media (min-width: $xlarge-screen) {
-  @for $offset from 1 through $columns {
-    %pull-xl-#{$offset} {
-      margin-right: $total-width*((($gutter-width+$column-width)*$offset) / $gridsystem-width) + $total-width*(($gutter-width*.5)/$gridsystem-width);
-    }
-  }
+	@for $offset from 1 through $columns {
+		%pull-xl-#{$offset} {
+			margin-right: $total-width*((($gutter-width+$column-width)*$offset) / $gridsystem-width) + $total-width*(($gutter-width*.5)/$gridsystem-width);
+		}
+	}
 }

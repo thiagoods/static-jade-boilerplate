@@ -1,25 +1,25 @@
 {
-  "version": "1.0.0",
-  "name": "Your Main Page",
-  "launch_path": "/index.html",
-  "description": "A front-end template that helps you build web apps.",
-  "icons": {
-    "128": "assets/icons/icon-128x128.png"
-  },
-  "developer": {
-    "name": "Thiago Oliveira",
-    "url": ""
-  },
-  "installs_allowed_from": [
-    "*"
-  ],
-  "default_locale": "en",
-  "permissions": {
-  },
-  "locales": {
-    "en": {
-      "name": "Your Main Page",
-      "description": "A front-end template that helps you build web apps."
-    }
-  }
+	"version": "1.0.0",
+	"name": "Your Main Page",
+	"launch_path": "/index.html",
+	"description": "A front-end template that helps you build web apps.",
+	"icons": {
+		"128": "assets/icons/icon-128x128.png"
+	},
+	"developer": {
+		"name": "Thiago Oliveira",
+		"url": ""
+	},
+	"installs_allowed_from": [
+		"*"
+	],
+	"default_locale": "en",
+	"permissions": {
+	},
+	"locales": {
+		"en": {
+			"name": "Your Main Page",
+			"description": "A front-end template that helps you build web apps."
+		}
+	}
 }

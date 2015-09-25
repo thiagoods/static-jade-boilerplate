@@ -1,16 +1,16 @@
 {
-  "name": "Your main page",
-  "short_name": "YMP",
-  "icons": [{
-        "src": "assets/icons/icon-128x128.png",
-        "sizes": "128x128"
-      }, {
-        "src": "assets/icons/apple-touch-icon.png",
-        "sizes": "152x152"
-      }, {
-        "src": "assets/icons/chrome-touch-icon-192x192.png",
-        "sizes": "192x192"
-      }],
-  "start_url": "/index.html",
-  "display": "standalone"
+	"name": "Your main page",
+	"short_name": "YMP",
+	"icons": [{
+				"src": "assets/icons/icon-128x128.png",
+				"sizes": "128x128"
+			}, {
+				"src": "assets/icons/apple-touch-icon.png",
+				"sizes": "152x152"
+			}, {
+				"src": "assets/icons/chrome-touch-icon-192x192.png",
+				"sizes": "192x192"
+			}],
+	"start_url": "/index.html",
+	"display": "standalone"
 }

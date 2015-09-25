@@ -1,10 +1,7 @@
 # Site settings
 title: Your awesome title
 email: your-email@domain.com
-description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+description: Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
 url: 'http://yourdomain.com' # the base hostname & protocol for the site
 baseurl: '' # the subpath of your site, e.g. /blog/
 github_username: thiagoods
@@ -22,11 +19,10 @@ keep_files:   ['css', 'js', 'assets']
 
 #Defaults
 defaults:
-  -
-    scope:
-      path: ''
-      type: 'posts'
-    values:
-      layout: 'post'
-      author: 'Thiago Oliveira'
-      category: 'blog'
+  scope:
+    path: ''
+    type: 'posts'
+  values:
+    layout: 'post'
+    author: 'Thiago Oliveira'
+    category: 'blog'

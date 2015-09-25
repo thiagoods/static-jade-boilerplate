@@ -3,61 +3,61 @@
 **************/
 
 html {
-  box-sizing: border-box;
-  font-size: 16px;
+	box-sizing: border-box;
+	font-size: 16px;
 }
 *, *:before, *:after {
-  box-sizing: inherit;
+	box-sizing: inherit;
 }
 html, body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, address, cite, code, del, em, img, ins, small, strike, strong, sub, sup, var, dl, dt, dd, ol, ul, li, fieldset, form, button, input, optgroup, select, textarea, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
-  border: 0;
-  font-style: inherit;
-  font-weight: inherit;
-  margin: 0;
-  outline: 0;
-  padding: 0;
+	border: 0;
+	font-style: inherit;
+	font-weight: inherit;
+	margin: 0;
+	outline: 0;
+	padding: 0;
 }
 body {
-  font-size: 100%;
-  line-height: 1.5em;
+	font-size: 1rem;
+	line-height: 1.5rem;
 }
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
-  display: block;
+	display: block;
 }
 :focus {
-  outline: 0;
+	outline: 0;
 }
 ol, ul {
-  list-style: none;
+	list-style: none;
 }
 table {
-  border-collapse: collapse;
-  border-spacing: 0;
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 td, th {
-  padding: 0;
+	padding: 0;
 }
 blockquote:before, blockquote:after, q:before, q:after {
-  content: '';
+	content: '';
 }
 textarea {
-  overflow: auto;
+	overflow: auto;
 }
 blockquote, q {
-  quotes: '''';
+	quotes: '''';
 }
 sub, sup {
-  font-size: .7em;
-  line-height: 0;
-  position: relative;
-  vertical-align: baseline;
+	font-size: .7em;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
 }
 sup {
-  top: -.5em;
+	top: -.5em;
 }
 sub {
-  bottom: -.25em;
+	bottom: -.25em;
 }
 button[disabled], html input[disabled] {
-  cursor: default;
+	cursor: default;
 }
