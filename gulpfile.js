@@ -9,7 +9,6 @@ var gulp = require('gulp'),
 		jsreporter = require('jshint-stylish'),
 		imagemin = require('gulp-imagemin'),
 		minifycss = require('gulp-minify-css'),
-		//minifyHtml = require('gulp-minify-html'),
 		pngquant = require('imagemin-pngquant'),
 		rename = require('gulp-rename'),
 		sass = require('gulp-sass'),
@@ -52,7 +51,6 @@ gulp.task('jekyll', function (cb){
 
 gulp.task('html',['jekyll'], function(){
 	return gulp.src('dist/**/*.html')
-		//.pipe(minifyHtml())
 		.pipe(gulp.dest('dist'))
 		.pipe(browserSync.reload({stream:true, once: true}))
 });
@@ -102,11 +100,11 @@ gulp.task('browser-sync', function(){
 	});
 });
 
-gulp.task('analyze', function(){
+gulp.task('analyze', ['build'], function(){
 	gulp.start('cssanalyze', 'jsanalyze');
 });
 
-gulp.task('build', function(){
+gulp.task('build', ['clean'], function(){
 	gulp.start('html', 'css', 'js', 'image')
 });
 
