@@ -12,14 +12,91 @@ var gulp = require('gulp'),
 		minifycss = require('gulp-minify-css'),
 		pngquant = require('imagemin-pngquant'),
 		rename = require('gulp-rename'),
+		replace = require('gulp-replace'),
 		sass = require('gulp-sass'),
-		stylestats = require('gulp-stylestats'),
 		uglify = require('gulp-uglify');
 
 /*Configuration Files*/
 var autoprefixerConfig = {browsers: ['last 2 version', 'ie 9', 'ios 6', 'android 4']},
 		csslintConfig = require('./.csslintrc.json'),
 		jshintConfig = require('./.jshintrc.json'),
-		stylestatsConfig = require('./.stylestats.json');
+		stylestatsConfig = require('./.stylestats.json'),
+		version = Date.now();
 
 /*Tasks*/
+	gulp.task('clean', function(cb) {
+		return del('dist', cb);
+	});
+
+	gulp.task('html', function(){
+		return gulp.src('src/pages/**/index.jade')
+			.pipe(jade({ basedir: 'src', pretty: true }))
+			.pipe(replace('{{version}}', version))
+			.pipe(gulp.dest('dist'))
+			.pipe(browserSync.stream());
+	});
+
+	gulp.task('css', function(){
+		return gulp.src('src/css/main.scss')
+			.pipe(sass())
+			.pipe(autoprefixer(autoprefixerConfig))
+			.pipe(replace('{{version}}', version))
+			.pipe(csslint(csslintConfig))
+			.pipe(csslint.reporter())
+			.pipe(gulp.dest('dist/css'))
+			.pipe(minifycss())
+			.pipe(rename({ suffix: '.min' }))
+			.pipe(gulp.dest('dist/css'))
+			.pipe(browserSync.stream());
+	});
+
+	gulp.task('js', function(){
+		return gulp.src('src/js/*.js')
+			.pipe(jshint(jshintConfig))
+			.pipe(jshint.reporter(jsreporter))
+			.pipe(concat('scripts.js'))
+			.pipe(gulp.dest('dist/js'))
+			.pipe(uglify())
+			.pipe(rename({ suffix: '.min' }))
+			.pipe(gulp.dest('dist/js'))
+			.pipe(browserSync.stream());
+	});
+
+	gulp.task('static', function() {
+		return gulp.src(['src/static/**/*', '!src/static/assets/imgmin/'])
+			.pipe(gulp.dest('dist'))
+			.pipe(browserSync.stream());
+	});
+
+	gulp.task('imagemin', function() {
+		return gulp.src('src/static/assets/imgmin/**/*.+(gif|jpg|png)')
+			.pipe(imagemin({ optimizationLevel: 7, progressive: true, use: [pngquant()] }))
+			.pipe(gulp.dest('src/static/assets/img'))
+	});
+
+	gulp.task('browsersync', function() {
+		browserSync({
+			ghostMode: {
+				clicks: true,
+				forms: true,
+				location: true,
+				scroll: true
+			},
+			server: {
+				baseDir: 'dist'
+			},
+			watchTask: true
+		});
+	});
+
+	gulp.task('default', ['clean'], function() {
+		gulp.start('html', 'css', 'js', 'static');
+	});
+
+	gulp.task('dev', ['html', 'css', 'js', 'static'], function(){
+		gulp.start('browsersync');
+		gulp.watch('src/+(data|includes|mixins|pages|templates)/**/*.jade', ['html', browserSync.reload])
+		gulp.watch('src/css/*.scss', ['css'])
+		gulp.watch('src/js/*.js', ['js'])
+		gulp.watch('src/static/**/*', ['static'])
+	});

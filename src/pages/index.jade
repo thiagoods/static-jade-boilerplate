@@ -1,0 +1,9 @@
+block pageData
+	- var page = {}
+	- page.path = '/'
+	- page.version = '{{version}}'
+	
+extends /templates/default.jade
+
+block content
+	p= "Hello World, It was me you looking for?"

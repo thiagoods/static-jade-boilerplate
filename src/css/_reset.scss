@@ -3,11 +3,10 @@
 **************/
 
 html {
-	box-sizing: border-box;
 	font-size: 16px;
 }
 *, *:before, *:after {
-	box-sizing: inherit;
+	box-sizing: border-box;
 }
 html, body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, address, cite, code, del, em, img, ins, small, strike, strong, sub, sup, var, dl, dt, dd, ol, ul, li, fieldset, form, button, input, optgroup, select, textarea, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
 	border: 0;
@@ -37,13 +36,13 @@ table {
 td, th {
 	padding: 0;
 }
-blockquote:before, blockquote:after, q:before, q:after {
+blockquote:before, blockquote:after {
 	content: '';
 }
 textarea {
 	overflow: auto;
 }
-blockquote, q {
+blockquote {
 	quotes: '''';
 }
 sub, sup {
