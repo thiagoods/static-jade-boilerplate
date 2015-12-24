@@ -11,3 +11,23 @@
 		clear: both;
 	}
 }
+
+@mixin make-column($cols) {
+	width: $total-width * (($column-width * $cols) / $gridsystem-width);
+}
+@mixin make-push-column($offset) {
+	margin-left: $total-width * (($column-width * $offset) / $gridsystem-width);
+}
+@mixin make-pull-column($offset) {
+	margin-right: $total-width * (($column-width * $offset) / $gridsystem-width);
+}
+
+@mixin media-querie($querie) {
+	@if ($querie > 0) {
+		@media (min-width: $querie) {
+			@content;
+		}
+	} @else {
+		@content
+	}
+}
