@@ -1,15 +1,15 @@
 {
-	"name": "boilerplate-name",
-	"version": "0.1.0",
+	"name": "static-jade-boilerplate",
+	"version": "0.2.0",
 	"author": {
 		"name": "thiagoods",
 		"email": "t.oliveira@outlook.com"
 	},
 	"license": "MIT",
-	"description": "Boilerplate description for your project",
+	"description": "Boilerplate using Jade, Sass and Gulp for compiling static pages",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/thiagoods/name-of-the-repo.git"
+		"url": "https://github.com/thiagoods/static-sade-boilerplate.git"
 	},
 	"devDependencies": {
 		"browser-sync": "^2.7.13",
