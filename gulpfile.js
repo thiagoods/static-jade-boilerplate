@@ -1,6 +1,5 @@
 /*Required Packages*/
 var gulp = require('gulp'),
-		autoprefixer = require('gulp-autoprefixer'),
 		browserSync = require('browser-sync'),
 		concat = require('gulp-concat'),
 		csslint = require('gulp-csslint'),
@@ -9,7 +8,7 @@ var gulp = require('gulp'),
 		jshint = require('gulp-jshint'),
 		jsreporter = require('jshint-stylish'),
 		imagemin = require('gulp-imagemin'),
-		minifycss = require('gulp-minify-css'),
+		cssnano = require('gulp-cssnano'),
 		pngquant = require('imagemin-pngquant'),
 		rename = require('gulp-rename'),
 		replace = require('gulp-replace'),
@@ -17,8 +16,8 @@ var gulp = require('gulp'),
 		uglify = require('gulp-uglify');
 
 /*Configuration Files*/
-var autoprefixerConfig = {browsers: ['last 2 version', 'ie 9', 'ios 6', 'android 4']},
-		csslintConfig = require('./.csslintrc.json'),
+var csslintConfig = require('./.csslintrc.json'),
+		cssNanoConfig = {autoprefixer: {browsers: ['last 2 version', 'ie 10', 'ios 7', 'android 4']}, discardUnused: false, minifyFontValues: false}
 		jshintConfig = require('./.jshintrc.json'),
 		stylestatsConfig = require('./.stylestats.json'),
 		version = Date.now();
@@ -39,13 +38,12 @@ var autoprefixerConfig = {browsers: ['last 2 version', 'ie 9', 'ios 6', 'android
 	gulp.task('css', function(){
 		return gulp.src('src/css/main.scss')
 			.pipe(sass())
-			.pipe(autoprefixer(autoprefixerConfig))
 			.pipe(replace('{{version}}', version))
+			.pipe(gulp.dest('dist/css'))
+			.pipe(cssnano(cssNanoConfig))
+			.pipe(rename({ suffix: '.min' }))
 			.pipe(csslint(csslintConfig))
 			.pipe(csslint.reporter())
-			.pipe(gulp.dest('dist/css'))
-			.pipe(minifycss())
-			.pipe(rename({ suffix: '.min' }))
 			.pipe(gulp.dest('dist/css'))
 			.pipe(browserSync.stream());
 	});

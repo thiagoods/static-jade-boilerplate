@@ -3,10 +3,11 @@
 **************/
 
 html {
+	box-sizing: border-box;
 	font-size: 16px;
 }
 *, *:before, *:after {
-	box-sizing: border-box;
+	box-sizing: inherit;
 }
 html, body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, address, cite, code, del, em, img, ins, small, strike, strong, sub, sup, var, dl, dt, dd, ol, ul, li, fieldset, form, button, input, optgroup, select, textarea, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
 	border: 0;
