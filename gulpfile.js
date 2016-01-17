@@ -36,7 +36,7 @@ var csslintConfig = require('./.csslintrc.json'),
 	});
 
 	gulp.task('css', function(){
-		return gulp.src('src/css/main.scss')
+		return gulp.src('src/css/site.scss')
 			.pipe(sass())
 			.pipe(replace('{{version}}', version))
 			.pipe(gulp.dest('dist/css'))
@@ -49,10 +49,10 @@ var csslintConfig = require('./.csslintrc.json'),
 	});
 
 	gulp.task('js', function(){
-		return gulp.src('src/js/*.js')
+		return gulp.src(require('./src/js/modules.js'))
 			.pipe(jshint(jshintConfig))
 			.pipe(jshint.reporter(jsreporter))
-			.pipe(concat('scripts.js'))
+			.pipe(concat('site.js'))
 			.pipe(gulp.dest('dist/js'))
 			.pipe(uglify())
 			.pipe(rename({ suffix: '.min' }))

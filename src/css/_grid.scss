@@ -1,5 +1,7 @@
-/* Grid */
-.container {
+/* Grid
+======================================== */
+
+@mixin make-container() {
 	@include clearfix();
 	margin-left: auto;
 	margin-right: auto;
@@ -8,37 +10,45 @@
 	padding-right: $gutter-width;
 }
 
-.row {
+@mixin make-row() {
 	@include clearfix();
 	margin-left: -$gutter-width;
 	margin-right: -$gutter-width;
 }
 
-%columns {
+@mixin make-column($cols) {
+	@extend %column;
+	width: $total-width * (($column-width * $cols) / $gridsystem-width);
+}
+
+@mixin make-push-column($offset) {
+	margin-left: $total-width * (($column-width * $offset) / $gridsystem-width);
+}
+
+@mixin make-pull-column($offset) {
+	margin-right: $total-width * (($column-width * $offset) / $gridsystem-width);
+}
+
+.container {
+	@include make-container();
+}
+
+.row {
+	@include make-row();
+}
+
+%column {
 	float: left;
 	padding-left: $gutter-width;
 	padding-right: $gutter-width;
 	position: relative;
 }
 
-@each $size, $querie in $sizes {
-	@include media-querie($querie) {
+@each $size, $width in $sizes {
+	@include media-querie($size) {
 		@for $i from 1 through $columns {
-			.col-#{$size}-#{$i} {
-				@extend %columns;
+			%col-#{$size}-#{$i} {
 				@include make-column($i);
-			}
-		}
-
-		@for $i from 1 through ($columns - 1) {
-			.col-#{$size}-push-#{$i} {
-				@include make-push-column($i);
-			}
-		}
-
-		@for $i from 1 through ($columns - 1) {
-			.col-#{$size}-pull-#{$i} {
-				@include make-pull-column($i);
 			}
 		}
 	}
