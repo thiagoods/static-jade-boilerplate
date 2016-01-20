@@ -47,7 +47,8 @@
 @each $size, $width in $sizes {
 	@include media-querie($size) {
 		@for $i from 1 through $columns {
-			%col-#{$size}-#{$i} {
+			.col-#{$size}-#{$i} {
+				@extend %column;
 				@include make-column($i);
 			}
 		}

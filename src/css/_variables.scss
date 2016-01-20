@@ -11,9 +11,9 @@ $grid-width: $gridsystem-width*1px;
 //media-queries sizes map
 $sizes: (
 	xs: 0,
-	sm: 30rem,
-	md: 40rem,
-	lg: 50rem,
-	xl: 65rem,
-	xxl: 75rem,
+	sm: 30rem,   //480
+	md: 40rem,   //640
+	lg: 50rem,   //800
+	xl: 65rem,   //1040
+	xxl: 75rem,  //1200
 );
