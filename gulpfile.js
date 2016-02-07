@@ -1,35 +1,60 @@
 /*Required Packages*/
 var gulp = require('gulp'),
-		browserSync = require('browser-sync'),
-		concat = require('gulp-concat'),
-		csslint = require('gulp-csslint'),
-		del = require('del'),
-		jade = require('gulp-jade'),
-		jshint = require('gulp-jshint'),
-		jsreporter = require('jshint-stylish'),
-		imagemin = require('gulp-imagemin'),
-		cssnano = require('gulp-cssnano'),
-		pngquant = require('imagemin-pngquant'),
-		rename = require('gulp-rename'),
-		replace = require('gulp-replace'),
-		sass = require('gulp-sass'),
-		uglify = require('gulp-uglify');
+	browserSync = require('browser-sync'),
+	concat = require('gulp-concat'),
+	csslint = require('gulp-csslint'),
+	cssnano = require('gulp-cssnano'),
+	del = require('del'),
+	frontMatter = require('front-matter'),
+	fs = require('fs'),
+	gJade = require('gulp-jade'),
+	imagemin = require('gulp-imagemin'),
+	jade = require('jade'),
+	jshint = require('gulp-jshint'),
+	jsreporter = require('jshint-stylish'),
+	map = require('vinyl-map'),
+	marked = require('marked'),
+	pngquant = require('imagemin-pngquant'),
+	rename = require('gulp-rename'),
+	replace = require('gulp-replace'),
+	sass = require('gulp-sass'),
+	uglify = require('gulp-uglify');
 
 /*Configuration Files*/
 var csslintConfig = require('./.csslintrc.json'),
-		cssNanoConfig = {autoprefixer: {browsers: ['last 2 version', 'ie 10', 'ios 7', 'android 4']}, discardUnused: false, minifyFontValues: false}
-		jshintConfig = require('./.jshintrc.json'),
-		stylestatsConfig = require('./.stylestats.json'),
-		version = Date.now();
+	cssNanoConfig = {autoprefixer: {browsers: ['last 2 version', 'ie 10', 'ios 7', 'android 4']}, discardUnused: false, minifyFontValues: false}
+	jshintConfig = require('./.jshintrc.json'),
+	stylestatsConfig = require('./.stylestats.json'),
+	version = Date.now();
 
 /*Tasks*/
 	gulp.task('clean', function(cb) {
 		return del('dist', cb);
 	});
 
+	gulp.task('posts', function() {
+		var postTemplate = fs.readFileSync('src/templates/post.jade');
+		var jadeTemplate = jade.compile(postTemplate, { basedir: 'src', pretty: true });
+		var renderPost = map(function(code, filename) {
+			var parsed = frontMatter(String(code));
+			var data = parsed.attributes;
+			var body = parsed.body;
+			body = marked.parse(body);
+			data.content = body;
+			data.filename = filename;
+			return jadeTemplate(data);
+		});
+
+		return gulp.src('src/pages/blog/*.md')
+			.pipe(renderPost)
+			.pipe(rename({extname: '.html'}))
+			.pipe(gulp.dest('dist/blog'))
+			.pipe(browserSync.stream());
+	});
+
 	gulp.task('html', function(){
-		return gulp.src('src/pages/**/index.jade')
-			.pipe(jade({ basedir: 'src', pretty: true }))
+		return gulp.src(['src/pages/**/index.jade', 'src/pages/404.jade'])
+			.pipe(gJade({ basedir: 'src', pretty: true }))
 			.pipe(replace('{{version}}', version))
 			.pipe(gulp.dest('dist'))
 			.pipe(browserSync.stream());
@@ -88,12 +113,13 @@ var csslintConfig = require('./.csslintrc.json'),
 	});
 
 	gulp.task('default', ['clean'], function() {
-		gulp.start('html', 'css', 'js', 'static');
+		gulp.start('html', 'posts', 'css', 'js', 'static');
 	});
 
 	gulp.task('dev', ['html', 'css', 'js', 'static'], function(){
 		gulp.start('browsersync');
 		gulp.watch('src/+(data|includes|mixins|pages|templates)/**/*.jade', ['html', browserSync.reload])
+		gulp.watch('src/pages/blog/*.md', ['posts'])
 		gulp.watch('src/css/*.scss', ['css'])
 		gulp.watch('src/js/*.js', ['js'])
 		gulp.watch('src/static/**/*', ['static'])

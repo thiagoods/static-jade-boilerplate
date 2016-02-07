@@ -36,7 +36,7 @@
 	margin-right: $total-width * (($column-width * $offset) / $gridsystem-width);
 }
 
-@mixin media-querie($size) {
+@mixin media-querie-min($size) {
 	@if (map-get($sizes, $size) > 0) {
 		@media (min-width: map-get($sizes, $size)) {
 			@content;
@@ -44,4 +44,12 @@
 	} @else {
 		@content
 	};
+}
+
+@mixin media-querie-max($size) {
+	@if (map-get($sizes, $size) > 0) {
+		@media (max-width: (map-get($sizes, $size) - 1px)) {
+			@content;
+		}
+	}
 }

@@ -5,6 +5,7 @@
 	"compatible-vendor-prefixes" : false,
 	"floats"                     : false,
 	"gradients"                  : false,
+	"important"                  : false,
 	"outline-none"               : false,
 	"qualified-headings"         : false,
 	"unique-headings"            : false,

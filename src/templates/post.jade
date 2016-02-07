@@ -1,11 +1,15 @@
 include /data/site.jade
-include /data/blog.jade
 
 block pageData
+	- var page = {}
+	- page.version = '{{version}}'
+	- page.title = title
 
 doctype html
 html(lang='pt-BR')
 	include /includes/head.jade
 	body
-		block content
+		h1= title
+		h2= author
+		div!= content
 		include /includes/scriptsTag.jade

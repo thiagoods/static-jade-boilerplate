@@ -3,7 +3,7 @@
 
 html {
 	box-sizing: border-box;
-	font-size: 16px;
+	font-size: 10px;
 }
 *, *:before, *:after {
 	box-sizing: inherit;
@@ -17,8 +17,8 @@ html, body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, addr
 	padding: 0;
 }
 body {
-	font-size: 1rem;
-	line-height: 1.5rem;
+	font-size: 1.6rem;
+	line-height: 1.5;
 }
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
 	display: block;

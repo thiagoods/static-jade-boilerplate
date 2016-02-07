@@ -1,6 +1,6 @@
-/* Utilitaries classes
+/* Utilities
 ======================================== */
 
-.clearfix {
-	@include clearfix();
+.hidden {
+	display: none !important;
 }
