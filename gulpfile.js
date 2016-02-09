@@ -12,13 +12,13 @@ var gulp = require('gulp'),
 	jade = require('jade'),
 	jshint = require('gulp-jshint'),
 	jsreporter = require('jshint-stylish'),
-	map = require('vinyl-map'),
 	marked = require('marked'),
 	pngquant = require('imagemin-pngquant'),
 	rename = require('gulp-rename'),
 	replace = require('gulp-replace'),
 	sass = require('gulp-sass'),
-	uglify = require('gulp-uglify');
+	uglify = require('gulp-uglify'),
+	vinylMap = require('vinyl-map');
 
 /*Configuration Files*/
 var csslintConfig = require('./.csslintrc.json'),
@@ -35,7 +35,7 @@ var csslintConfig = require('./.csslintrc.json'),
 	gulp.task('posts', function() {
 		var postTemplate = fs.readFileSync('src/templates/post.jade');
 		var jadeTemplate = jade.compile(postTemplate, { basedir: 'src', pretty: true });
-		var renderPost = map(function(code, filename) {
+		var renderPost = vinylMap(function(code, filename) {
 			var parsed = frontMatter(String(code));
 			var data = parsed.attributes;
 			var body = parsed.body;

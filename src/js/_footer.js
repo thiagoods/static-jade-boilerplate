@@ -1,1 +1,1 @@
-var footer = 'ultimo';
+var footer = 'last';
