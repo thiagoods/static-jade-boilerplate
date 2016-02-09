@@ -1,5 +1,5 @@
 # Static-Jade-Boilerplate
-Vanilla boilerplate for static sites using Jade, Sass and Gulp. The aim is to stay simple while providing a solid foundation to kickstart static jade projects. Convention over configuration! 
+Vanilla boilerplate for static sites using Jade, Sass and Gulp. The aim is to stay simple while providing a solid foundation to kickstart static jade projects. Convention over configuration!
 
 ## Includes:
   - gulp tasks for compiling Jade to HTML, Sass to CSS, concatenate JS and Browser Sync for development
@@ -35,55 +35,55 @@ Vanilla boilerplate for static sites using Jade, Sass and Gulp. The aim is to st
 
 ## Developing
 ### Folder structure
-```sh
-new_project -
-    /dist -
-        /css
-            site.css
-        /assets -
-			/icons
-			/img
-        /js
-            site.js
-    /src -
-        /css
-			styles.scss
-        /data
-			blog.jade
-			site.jade
-		/includes
-			head.jade
-		/js
-			modules.js
-		/mixins
-		/pages -
-			index.jade
-			404.jade
-			/about
-				index.jade
-			/blog
-				index.jade
-				post.md
-		/static -
-			/assets -
-				favicon.ico
-				robots.txt
+	```sh
+	new_project -
+	    /dist -
+	        /css
+	            site.css
+	        /assets -
 				/icons
 				/img
-				/imgmin
-        /templates
-			default.jade
-			post.jade
-		.csscomb.json
-		.csslintrc.json
-        .editorconfig
-        .gitignore
-		.jshintrc.json
-		.stylestats.json
-        Gulpfile.js
-        package.json
-        Readme.md
-```
+	        /js
+	            site.js
+	    /src -
+	        /css
+				styles.scss
+	        /data
+				blog.jade
+				site.jade
+			/includes
+				head.jade
+			/js
+				modules.js
+			/mixins
+			/pages -
+				index.jade
+				404.jade
+				/about
+					index.jade
+				/blog
+					index.jade
+					post.md
+			/static -
+				/assets -
+					favicon.ico
+					robots.txt
+					/icons
+					/img
+					/imgmin
+	        /templates
+				default.jade
+				post.jade
+			.csscomb.json
+			.csslintrc.json
+	        .editorconfig
+	        .gitignore
+			.jshintrc.json
+			.stylestats.json
+	        Gulpfile.js
+	        package.json
+	        Readme.md
+	```
 To add new pages, use the _about_ example, create a new folder inside /pages with an index.jade file inside.
 
 ### Gulp tasks
