@@ -16,20 +16,20 @@ Vanilla boilerplate for static sites using Jade, Sass and Gulp. The aim is to st
 1. Download and install [NodeJS](https://nodejs.org/en/)
 
 2. Install GulpJS globally
-```sh
-$ npm install --global gulp-cli
-```
+	```sh
+	$ npm install --global gulp-cli
+	```
 
 3. Clone this repo
-```sh
-$ git clone https://github.com/thiagoods/static-jade-boilerplate.git new_project
-$ cd new_project
-```
+	```sh
+	$ git clone https://github.com/thiagoods/static-jade-boilerplate.git new_project
+	$ cd new_project
+	```
 
 4. Install the dependencies via npm
-```sh
-$ npm install
-```
+	```sh
+	$ npm install
+	```
 
 5. You're good to go!
 
