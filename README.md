@@ -1,5 +1,5 @@
 # Static-Jade-Boilerplate
-Vanilla boilerplate for static sites using Jade, Sass and Gulp. The aim is to stay simple while providing a solid foundation to kickstart static jade projects.
+Vanilla boilerplate for static sites using Jade, Sass and Gulp. The aim is to stay simple while providing a solid foundation to kickstart static jade projects. Convention over configuration! 
 
 ## Includes:
   - gulp tasks for compiling Jade to HTML, Sass to CSS, concatenate JS and Browser Sync for development
