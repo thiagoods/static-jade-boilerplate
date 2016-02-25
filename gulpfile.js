@@ -6,12 +6,9 @@ var gulp = require('gulp'),
 	cssnano = require('gulp-cssnano'),
 	del = require('del'),
 	frontMatter = require('front-matter'),
-	fs = require('fs'),
-	gJade = require('gulp-jade'),
 	imagemin = require('gulp-imagemin'),
 	jade = require('jade'),
 	jshint = require('gulp-jshint'),
-	jsreporter = require('jshint-stylish'),
 	marked = require('marked'),
 	pngquant = require('imagemin-pngquant'),
 	rename = require('gulp-rename'),
@@ -22,9 +19,9 @@ var gulp = require('gulp'),
 
 /*Configuration Files*/
 var csslintConfig = require('./.csslintrc.json'),
-	cssNanoConfig = {autoprefixer: {browsers: ['last 2 version', 'ie 10', 'ios 7', 'android 4']}, discardUnused: false, minifyFontValues: false}
+	cssNanoConfig = {autoprefixer: {browsers: ['last 2 version', 'ie 10', 'ios 7', 'android 4']}, discardUnused: false, minifyFontValues: false},
+	jadeOpts = { basedir: 'src', pretty: '\t' },
 	jshintConfig = require('./.jshintrc.json'),
-	stylestatsConfig = require('./.stylestats.json'),
 	version = Date.now();
 
 /*Tasks*/
@@ -33,28 +30,33 @@ var csslintConfig = require('./.csslintrc.json'),
 	});
 
 	gulp.task('posts', function() {
-		var postTemplate = fs.readFileSync('src/templates/post.jade');
-		var jadeTemplate = jade.compile(postTemplate, { basedir: 'src', pretty: true });
-		var renderPost = vinylMap(function(code, filename) {
-			var parsed = frontMatter(String(code));
+		var renderPost = function(content, filename) {
+			var jadeTemplate = jade.compileFile('src/templates/post.jade', jadeOpts);
+			var parsed = frontMatter(String(content));
 			var data = parsed.attributes;
 			var body = parsed.body;
 			body = marked.parse(body);
 			data.content = body;
 			data.filename = filename;
 			return jadeTemplate(data);
-		});
+		};
 
 		return gulp.src('src/pages/blog/*.md')
-			.pipe(renderPost)
+			.pipe(vinylMap(renderPost))
+			.pipe(replace('{{version}}', version))
 			.pipe(rename({extname: '.html'}))
 			.pipe(gulp.dest('dist/blog'))
 			.pipe(browserSync.stream());
 	});
 
 	gulp.task('html', function(){
-		return gulp.src(['src/pages/**/index.jade', 'src/pages/404.jade'])
-			.pipe(gJade({ basedir: 'src', pretty: true }))
+		var renderPage = function(content, filename) {
+			var fn = jade.compileFile(filename, jadeOpts);
+			return fn();
+		};
+
+		return gulp.src('src/pages/**/*.jade')
+			.pipe(vinylMap(renderPage))
 			.pipe(replace('{{version}}', version))
 			.pipe(gulp.dest('dist'))
 			.pipe(browserSync.stream());
@@ -76,7 +78,8 @@ var csslintConfig = require('./.csslintrc.json'),
 	gulp.task('js', function(){
 		return gulp.src(require('./src/js/modules.js'))
 			.pipe(jshint(jshintConfig))
-			.pipe(jshint.reporter(jsreporter))
+			.pipe(jshint.reporter('default'))
+			.pipe(jshint.reporter('fail'))
 			.pipe(concat('site.js'))
 			.pipe(gulp.dest('dist/js'))
 			.pipe(uglify())

@@ -88,10 +88,10 @@ To add new pages, use the _about_ example, create a new folder inside /pages wit
 
 ### Gulp tasks
 - gulp clean (self explanatory)
-- gulp posts (copmile the markdown posts to HTML through Jade template)
-- gulp html (compile Jade pages files to HTML)
+- gulp posts (compile markdown posts to HTML through Jade template)
+- gulp html (compile Jade files to HTML)
 - gulp css (compile SCSS to CSS)
-- gulp js (concatenate and mminify Js)
+- gulp js (concatenate and minify Js)
 - gulp static (copy static assets like images to dist folder)
 - gulp imagemin (optimize images in imgmin folder)
 - gulp browsersync (start the server for development)

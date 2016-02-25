@@ -1,10 +1,9 @@
 block pageData
 	- var page = {}
 	- page.path = '/'
-	- page.version = '{{version}}'
 	- page.title = site.title
-	
+
 extends /templates/default.jade
 
 block content
-	div Ooops something went wrong
+	div= 'Ooops something went wrong'
