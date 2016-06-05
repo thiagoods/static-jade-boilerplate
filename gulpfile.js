@@ -25,8 +25,8 @@ var csslintConfig = require('./.csslintrc.json'),
 	version = Date.now();
 
 /*Tasks*/
-	gulp.task('clean', function(cb) {
-		return del('dist', cb);
+	gulp.task('clean', function() {
+		return del('dist');
 	});
 
 	gulp.task('posts', function() {
@@ -66,11 +66,11 @@ var csslintConfig = require('./.csslintrc.json'),
 		return gulp.src('src/css/site.scss')
 			.pipe(sass())
 			.pipe(replace('{{version}}', version))
+			.pipe(csslint(csslintConfig))
+			.pipe(csslint.reporter())
 			.pipe(gulp.dest('dist/css'))
 			.pipe(cssnano(cssNanoConfig))
 			.pipe(rename({ suffix: '.min' }))
-			.pipe(csslint(csslintConfig))
-			.pipe(csslint.reporter())
 			.pipe(gulp.dest('dist/css'))
 			.pipe(browserSync.stream());
 	});
@@ -96,7 +96,12 @@ var csslintConfig = require('./.csslintrc.json'),
 
 	gulp.task('imagemin', function() {
 		return gulp.src('src/static/assets/imgmin/**/*.+(gif|jpg|png)')
-			.pipe(imagemin({ optimizationLevel: 7, progressive: true, use: [pngquant()] }))
+			.pipe(imagemin([
+				imagemin.pngquant({
+					optimizationLevel: 7,
+					progressive: true
+				})
+			]))
 			.pipe(gulp.dest('src/static/assets/img'))
 	});
 

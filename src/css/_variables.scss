@@ -1,14 +1,17 @@
 /* Variables
 ======================================== */
-//Grid vars
+
+/* Grid vars */
 $gutter-width: 2rem;
 $columns: 12;
 $gridsystem-width: 1200;
 $column-width: ($gridsystem-width / $columns);
 $total-width: 100%;
-//Converting gridsystem-width to pixels
+
+/* Converting gridsystem-width to pixels */
 $grid-width: $gridsystem-width*1px;
-//media-queries sizes map
+
+/* Media-queries sizes map */
 $sizes: (
 	xs: 0,
 	sm: 480px,
