@@ -1,5 +1,5 @@
 # Static-Jade-Boilerplate
-Vanilla boilerplate for static sites using Jade, Sass and Gulp. The aim is to stay simple while providing a solid foundation to kickstart static jade projects. Convention over configuration!
+Vanilla boilerplate for static sites using Jade, Sass and Gulp. The aim is to stay simple while providing a solid foundation to kickstart static site projects. Most of it stands for convention over configuration
 
 ## Includes:
   - gulp tasks for compiling Jade to HTML, Sass to CSS, concatenate JS and Browser Sync for development
@@ -70,7 +70,6 @@ new_project -
 				robots.txt
 				/icons
 				/img
-				/imgmin
         /templates
 			default.jade
 			post.jade
@@ -79,7 +78,6 @@ new_project -
         .editorconfig
         .gitignore
 		.jshintrc.json
-		.stylestats.json
         Gulpfile.js
         package.json
         Readme.md
@@ -93,7 +91,6 @@ To add new pages, use the _about_ example, create a new folder inside /pages wit
 - gulp css (compile SCSS to CSS)
 - gulp js (concatenate and minify Js)
 - gulp static (copy static assets like images to dist folder)
-- gulp imagemin (optimize images in imgmin folder)
 - gulp browsersync (start the server for development)
 - gulp dev (start the server and watch for changes in files)
 - gulp _default_ (clean and generate the build)
