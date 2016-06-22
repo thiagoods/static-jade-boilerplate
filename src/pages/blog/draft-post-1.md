@@ -1,6 +1,7 @@
 ---
 title: Draft post 1
 author: You
+slug: draft-post-1
 ---
 
 This is a post draft:

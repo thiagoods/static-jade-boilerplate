@@ -1,6 +1,5 @@
 /* Reset
 ======================================== */
-
 html {
 	box-sizing: border-box;
 	font-size: 10px;
@@ -78,7 +77,6 @@ section {
 	font-style: inherit;
 	font-weight: inherit;
 	margin: 0;
-	outline: 0;
 	padding: 0;
 }
 
@@ -101,10 +99,6 @@ nav,
 section,
 summary {
 	display: block;
-}
-
-:focus {
-	outline: 0;
 }
 
 ol,

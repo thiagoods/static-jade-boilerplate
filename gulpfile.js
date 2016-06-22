@@ -6,11 +6,9 @@ var gulp = require('gulp'),
 	cssnano = require('gulp-cssnano'),
 	del = require('del'),
 	frontMatter = require('front-matter'),
-	imagemin = require('gulp-imagemin'),
 	jade = require('jade'),
 	jshint = require('gulp-jshint'),
 	marked = require('marked'),
-	pngquant = require('imagemin-pngquant'),
 	rename = require('gulp-rename'),
 	replace = require('gulp-replace'),
 	sass = require('gulp-sass'),
@@ -58,6 +56,7 @@ var csslintConfig = require('./.csslintrc.json'),
 		return gulp.src('src/pages/**/*.jade')
 			.pipe(vinylMap(renderPage))
 			.pipe(replace('{{version}}', version))
+			.pipe(rename({extname: '.html'}))
 			.pipe(gulp.dest('dist'))
 			.pipe(browserSync.stream());
 	});
@@ -89,20 +88,9 @@ var csslintConfig = require('./.csslintrc.json'),
 	});
 
 	gulp.task('static', function() {
-		return gulp.src(['src/static/**/*', '!src/static/assets/imgmin/'])
+		return gulp.src('src/static/**/*')
 			.pipe(gulp.dest('dist'))
 			.pipe(browserSync.stream());
-	});
-
-	gulp.task('imagemin', function() {
-		return gulp.src('src/static/assets/imgmin/**/*.+(gif|jpg|png)')
-			.pipe(imagemin([
-				imagemin.pngquant({
-					optimizationLevel: 7,
-					progressive: true
-				})
-			]))
-			.pipe(gulp.dest('src/static/assets/img'))
 	});
 
 	gulp.task('browsersync', function() {

@@ -1,6 +1,7 @@
 block pageData
 	- var page = {}
-	- page.path = '/'
+	- page.path = '/blog'
+	- page.url = site.url + page.path
 	- page.title = site.title
 
 extends /templates/default.jade
@@ -9,5 +10,5 @@ block content
 	ul
 		each post in blog.posts
 			li
-				a(href='/blog/' + post.slug + '.html').post-title= post.title
+				a.post-title(href='/blog/' + post.slug + '.html')= post.title
 				.post-date= post.date

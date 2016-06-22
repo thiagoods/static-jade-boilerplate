@@ -2,6 +2,7 @@ include /data/site.jade
 
 block pageData
 	- var page = {}
+	- page.url = site.url + '/blog/' + slug + '.html'
 	- page.title = title
 
 doctype html
