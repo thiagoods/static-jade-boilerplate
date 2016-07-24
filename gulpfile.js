@@ -18,7 +18,7 @@ var gulp = require('gulp'),
 /*Configuration Files*/
 var csslintConfig = require('./.csslintrc.json'),
 	cssNanoConfig = {autoprefixer: {browsers: ['last 2 version', 'ie 10', 'ios 7', 'android 4']}, discardUnused: false, minifyFontValues: false},
-	jadeOpts = { basedir: 'src', pretty: '\t' },
+	jadeOpts = { basedir: 'src', pretty: '' },
 	jshintConfig = require('./.jshintrc.json'),
 	version = Date.now();
 
@@ -114,7 +114,7 @@ var csslintConfig = require('./.csslintrc.json'),
 
 	gulp.task('dev', ['html', 'css', 'js', 'static'], function(){
 		gulp.start('browsersync');
-		gulp.watch('src/+(data|includes|mixins|pages|templates)/**/*.jade', ['html', browserSync.reload])
+		gulp.watch('src/+(data|includes|mixins|pages|templates)/**/*.jade', { debounceDelay: 400 }, ['html', browserSync.reload])
 		gulp.watch('src/pages/blog/*.md', ['posts'])
 		gulp.watch('src/css/*.scss', ['css'])
 		gulp.watch('src/js/*.js', ['js'])

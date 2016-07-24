@@ -1,26 +1,32 @@
 /* Grid
 ======================================== */
+@if ($pre-generated-grid) {
+	.container {
+		@include make-container();
+	}
 
-.container {
-	@include make-container();
-}
+	.row {
+		@include make-row();
+	}
 
-.row {
-	@include make-row();
-}
+	.col {
+		padding-left: $gutter-width;
+		padding-right: $gutter-width;
+		position: relative;
+		@if ($floated-grid) {
+			float: left;
+		} @else {
+			display: inline-block;
+			vertical-align: top;
+		}
+	}
 
-.col {
-	float: left;
-	padding-left: $gutter-width;
-	padding-right: $gutter-width;
-	position: relative;
-}
-
-@each $size, $width in $sizes {
-	@include media-querie-min($size) {
-		@for $i from 1 through $columns {
-			.col-#{$size}-#{$i} {
-				@include make-column($i);
+	@each $size, $width in $sizes {
+		@include media-querie-min($size) {
+			@for $i from 1 through $columns {
+				.col-#{$size}-#{$i} {
+					@include make-column($i);
+				}
 			}
 		}
 	}
