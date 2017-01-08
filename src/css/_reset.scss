@@ -101,6 +101,19 @@ summary {
 	display: block;
 }
 
+audio,
+canvas,
+progress,
+video {
+	display: inline-block;
+	vertical-align: baseline;
+}
+
+audio:not([controls]) {
+	display: none;
+	height: 0;
+}
+
 ol,
 ul {
 	list-style: none;
